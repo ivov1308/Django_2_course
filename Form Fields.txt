@@ -1,0 +1,65 @@
+ChoiceField: Поле для выбора одного значения из списка (рендерится как ). Требует аргумент choices (список кортежей (значение, отображаемое_имя)).
+MultipleChoiceField: Поле для выбора нескольких значений из списка (рендерится как <select multiple> или набор чекбоксов, в зависимости от виджета). Требует choices.
+FileField, ImageField: Для загрузки файлов.
+RegexField: Поле, значение которого проверяется по регулярному выражению (аргумент regex).
+... и другие.
+
+
+Аргументы Полей Форм.
+Поля форм принимают различные аргументы для настройки их поведения и валидации:
+    required=True/False: Обязательно ли поле для заполнения.
+    label="Текст метки": Текст для тега <label>. Если не указан, генерируется из имени поля.
+    initial=значение: Начальное значение поля при отображении пустой формы.
+    widget=WidgetКласс: Позволяет указать, какой HTML-виджет использовать для рендеринга поля (например, forms.Textarea, forms.PasswordInput, forms.CheckboxInput, forms.Select). По умолчанию Django выбирает виджет на основе типа поля.
+    help_text="Текст подсказки": Дополнительный текст, отображаемый рядом с полем.
+    error_messages={'required': 'Это поле обязательно.', ...}: Словарь для переопределения стандартных сообщений об ошибках валидации.
+    validators=[validator_func1, ...]: Список дополнительных функций-валидаторов. Специфичные для поля аргументы (например, max_length для CharField, choices для ChoiceField).
+
+
+Виджеты (Widgets): Виджеты отвечают за рендеринг поля формы в HTML. Django предоставляет стандартные виджеты для каждого типа поля, но вы можете их переопределить с помощью аргумента widget.
+Примеры виджетов:
+    TextInput,
+    NumberInput,
+    EmailInput,
+    URLInput,
+    PasswordInput,
+    HiddenInput,
+    DateInput,
+    DateTimeInput,
+    TimeInput,
+    Textarea,
+    CheckboxInput,
+    RadioSelect (для ChoiceField),
+    CheckboxSelectMultiple (для MultipleChoiceField),
+    Select (для ChoiceField),
+    SelectMultiple (для MultipleChoiceField),
+    FileInput,
+    ClearableFileInput NullBooleanSelect (выбор "Да", "Нет", "Неизвестно").
+
+Виджеты также могут принимать атрибуты для HTML-тега через аргумент attrs:
+    name = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(
+            attrs={'class': 'form-control',
+                   'placeholder': 'Ваше имя'}
+        )
+    )
+    message = forms.CharField(
+        widget=forms.Textarea(
+            attrs={'rows': 3,
+                   'class': 'message-area'}
+            )
+    )
+
+
+Определение форм с помощью классов Django позволяет инкапсулировать всю информацию о полях формы, их рендеринге и базовой валидации в одном месте.
+В следующих уроках мы увидим, как отображать эти формы в шаблонах и обрабатывать отправленные данные в представлениях.
+
+
+Ivan
+ivan13air@mail.ru
+Разработка ТГ-ботов
+А сделайте-ка мне телеграм-бот, который все все умеет и даже больше, за  дохуелярд денег.
+
+Новый Пост
+Очень много полезного и содержательного текста, описывающего текущую ситуацию в мире в общем и целом...

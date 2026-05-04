@@ -1,0 +1,18 @@
+
+{% extends 'blog/blog.html' %}
+
+{% block title %}{{ post.title }}{% endblock title %}
+
+{% block navigation %}{% endblock navigation %}
+
+{% block content %}
+    <body>
+        <h1>{{ page_title }}</h1>
+        <form method="post">
+            {% csrf_token %} {# Обязательно для POST-форм! #}
+            {{ form.as_p }}
+            <button type="submit">Отправить</button>
+            <a href="{% url 'blog:post_detail' pk=post.pk %}">Отмена</a>
+        </form>
+    </body>
+{% endblock content %}

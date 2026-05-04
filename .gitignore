@@ -1,0 +1,10 @@
+__pycache__
+.mypy_cache
+mypy.ini
+.venv
+.env
+.pgadmin_data
+.postgres_data
+.redis_data
+temp.py
+logs.log

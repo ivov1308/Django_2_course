@@ -1,0 +1,20 @@
+
+{% extends 'base.html' %}
+
+{% block title %}=== BLOG ==={% endblock title %}
+
+<nav>
+    {% block navigation %}
+        <p>==================== FBV ====================</p>
+        <a href="/blog/post_list/">Список постов</a>
+        <p>==================== CBV ====================</p>
+        <a href="/blog/post_lst/">Список постов</a>
+    {% endblock navigation %}
+</nav>
+
+
+
+{% block content %}
+    <h1>Раздел 'BLOG'</h1>
+    <p>Раздел для размещения пользовательских постов на разную тематику.</p>
+{% endblock content %}

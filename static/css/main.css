@@ -1,0 +1,21 @@
+h1 {
+  color: #550f8fee;
+  font-size: 64px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+h2 {
+  color: #032218ee;
+  font-size: 32px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+p {
+  color: #003f91ee;
+  font-size: 16px;
+}
+
+a {
+  color: #4d4500;
+  font-size: large;
+}

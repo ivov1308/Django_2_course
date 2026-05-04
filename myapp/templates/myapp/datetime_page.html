@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Текущее Время и Данные</title>
+</head>
+<body>
+    <h1>Информация о запросе</h1>
+
+    <p>Текущее время: {{ current_time|date:"H:i:s d.m.Y" }}</p>
+    <p>Ваш браузер: {{ browser_info }}</p>
+
+    {% if user_is_active %}
+        <p>Статус пользователя: Активен</p>
+    {% else %}
+        <p>Статус пользователя: Неактивен</p>
+    {% endif %}
+
+    <h2>Список покупок:</h2>
+    <ul>
+        {% for item in item_list %}
+            <li>{{ item }}</li>
+        {% empty %}
+            <li>Список пуст.</li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>
