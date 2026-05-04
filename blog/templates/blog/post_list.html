@@ -1,0 +1,52 @@
+
+{% extends 'blog/blog.html' %} {# Предполагаем наличие базового шаблона #}
+{% load static %} {# Если нужна статика #}
+
+{% block title %}{{ page_title }}{% endblock title %}
+
+<nav>
+    <a href="/blog/">Блог</a>
+    {% block navigation %}
+        <p>==================== FBV ====================</p>
+        <a href="/blog/create_post/">Написать пост</a>
+        <p>==================== CBV ====================</p>
+        <a href="/blog/post/new/">Написать пост</a>
+    {% endblock navigation %}
+
+</nav>
+
+
+{% block content %}
+    <h1>{{ page_title }}</h1>
+
+    {% if post_list %} {# Проверяем, не пуст ли QuerySet #}
+        <ul>
+            {% for post in post_list %} {# Итерируем по QuerySet (здесь происходит запрос к БД) #}
+                <li>
+                    <h2>
+                        <!-- Ссылка на детальную страницу поста (предполагаем URL с именем 'post_detail') -->
+                        <p>==================== FBV ====================</p>
+                        <a href="{% url 'blog:post_detail' pk=post.pk %}">
+                            {{ post.title }}
+                        </a>
+                        <p>==================== CBV ====================</p>
+                        <a href="{% url 'blog:post_dtl' pk=post.pk %}">
+                            {{ post.title }}
+                        </a>
+                    </h2>
+                    <p>Автор: {{ post.author.username }}</p> {# Доступ к полям связанной модели User #}
+                    <p>Опубликовано: {{ post.published_date|date:"d M Y H:i" }}</p>
+                    <p>{{ post.content|truncatewords:30 }}</p> {# Краткое содержание #}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Пока нет опубликованных постов.</p>
+    {% endif %}
+
+            {# Показать ссылку на добавление поста только тем, у кого есть право #}
+    {% if perms.blog.add_post %} {# Переменная 'perms' доступна по умолчанию #}
+        <a href="{% url 'blog:create_post' %}">+ Добавить новый пост</a>
+    {% endif %}
+
+{% endblock content %}

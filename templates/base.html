@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Мой сайт{% endblock title %}</title>
+    <link rel="stylesheet" href="/static/css/main.css"> <!-- Подключение статики рассмотрим позже -->
+    <link rel="icon" href="/static/images/favicon.ico">
+</head>
+<body>
+    <header>
+        <h1>Логотип Сайта</h1>
+        <nav>
+            <a href="/">Главная</a>
+            <a href="/blog/">Блог</a>
+
+            {% block navigation %}
+                <a href="/about/">О нас</a>
+                <a href="/contact_view/">Обратная связь</a>
+            {% endblock navigation %}
+        </nav>
+    </header>
+
+    {% if user.is_authenticated %}
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <p>Привет, {{ user.username }}! <button type="submit">Выйти</button></p>
+        </form>
+    {% else %}
+        <p><a href="{% url 'login' %}">Войти</a> | <a href="{% url 'users:signup' %}">Регистрация</a></p>
+    {% endif %}
+
+    <main>
+        {% block content %}
+            <!-- Содержимое по умолчанию, если блок не переопределен -->
+            <p>Добро пожаловать на наш сайт! - base</p>
+        {% endblock content %}
+    </main>
+
+    <footer>
+        <p>© {% now "Y" %} Моя Компания. Все права защищены.</p>
+        {% block footer_extra %}{% endblock footer_extra %}
+    </footer>
+
+</body>
+</html>

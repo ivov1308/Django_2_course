@@ -1,0 +1,7 @@
+__pycache__
+.venv
+.env
+.pgadmin_data
+.postgres_data
+.redis_data
+temp.py
