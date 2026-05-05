@@ -8,3 +8,5 @@ mypy.ini
 .redis_data
 temp.py
 logs.log
+server setup.txt
+db.sqlite3
